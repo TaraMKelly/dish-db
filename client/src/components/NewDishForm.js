@@ -1,8 +1,8 @@
 import React from 'react'
 
-function NewDishForm() {
+function NewDishForm({dishes}) {
   return (
-    <div>NewDishForm</div>
+    <div>New Dish Form Goes Here</div>
   )
 }
 
