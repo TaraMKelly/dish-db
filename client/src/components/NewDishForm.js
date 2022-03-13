@@ -1,8 +1,32 @@
 import React from 'react'
+import {useState} from 'react'
 
-function NewDishForm({dishes}) {
+function NewDishForm({dishes, setDishes}) {
+  const [dishName, setDishName] = useState("")
+
+  async function onDishSubmit(e) {
+    e.preventDefault()
+    const res = await fetch(`/dishes`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+      body: JSON.stringify({
+        name: dishName
+      })
+    })
+    const parsedBody = await res.json()
+    setDishes([...dishes, parsedBody])
+    setDishName("")
+  }
+
   return (
-    <div>New Dish Form Goes Here</div>
+    <form onSubmit={onDishSubmit}>
+      <input type="text" name="name" placeholder='Add a dish...' value={dishName} 
+        onChange={(e) => setDishName(e.target.value)} />
+      <button>Submit</button>
+    </form>
   )
 }
 
