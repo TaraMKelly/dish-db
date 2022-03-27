@@ -10,10 +10,12 @@ function Dish({ dish, handleDeleteDish }) {
         handleDeleteDish(dish.id)
     }
 
+
     return (
         <ul>
-            <li>{dish.name}</li>
-            <button onClick={deleteClick}>delete dish</button>
+            <li>{dish.name}: {dish.ingredients}</li>
+            
+            <button onClick={deleteClick}>Delete Dish</button>
         </ul>
     )
 }
